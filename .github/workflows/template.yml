@@ -1,0 +1,20 @@
+name: Template Workflow
+
+on:
+  workflow_call:
+    inputs:
+      input-1:
+        required: true
+        type: string
+      input-2:
+        required: true
+        type: string
+
+jobs:
+  work-bitch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: <
+          echo "1st input is ${{ inputs.input-1 }}"
+          echo "2nd input is ${{ inputs.input-2 }}"
+          sleep 30
