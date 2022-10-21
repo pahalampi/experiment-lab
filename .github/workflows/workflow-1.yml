@@ -3,7 +3,7 @@ name: Workflow 1
 on: workflow_dispatch
 
 jobs:
-  workflow-1:
+  build:
     strategy:
       max-parallel: 1
       matrix:
@@ -14,7 +14,24 @@ jobs:
           second-input: b
         - first-input: 3
           second-input: c
-    uses: pahalampi/experiment-lab/.github/workflows/template.yml@main
+    uses: pahalampi/experiment-lab/.github/workflows/template-build.yml@main
+    with:
+      input-1: ${{ matrix.first-input }}
+      input-2: ${{ matrix.second-input }}
+
+  deploy:
+    needs: build
+    strategy:
+      max-parallel: 1
+      matrix:
+        include:
+        - first-input: 1
+          second-input: a
+        - first-input: 2
+          second-input: b
+        - first-input: 3
+          second-input: c
+    uses: pahalampi/experiment-lab/.github/workflows/template-deploy.yml@main
     with:
       input-1: ${{ matrix.first-input }}
       input-2: ${{ matrix.second-input }}
