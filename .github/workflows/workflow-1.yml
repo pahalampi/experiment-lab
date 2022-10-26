@@ -10,3 +10,4 @@ jobs:
       input-2: ${{ matrix.second-input }}
     secrets:
       secret-1: ${{ secrets.FIRST_SECRET }}
+      secret-2: ${{ secrets.SECOND_SECRET }}
